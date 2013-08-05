@@ -21,7 +21,7 @@ define(function(require, exports, module){
             this._super();
         },
         onTouchesEnded:function (pTouch,pEvent){
-        this._jet.handleTouch(pTouch[0].getLocation());
+            this._jet.handleTouch(pTouch[0].getLocation());
         },
         onTouchesMoved:function(pTouch,pEvent){
             this._jet.handleTouchMove(pTouch[0].getLocation());
