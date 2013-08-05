@@ -8,9 +8,7 @@ function route( handle, pathname, request, response ){
 
 	}else{
 		var realPath = "app" + pathname;
-		console.log('realPath:', realPath)
 	    fs.exists(realPath, function (exists) {
-	    	console.log(exists)
 	        if (!exists) {
 	            response.writeHead(404, {
 	                'Content-Type': 'text/plain'

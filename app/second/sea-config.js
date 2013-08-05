@@ -5,8 +5,8 @@ seajs.config({
 		//"cocos2d": "/lib/cocos2d/Cocos2d-html5-v2.1.4.min",
 		"cocos2d": "/lib/cocos2d/Cocos2d-debug",
 		//app
-		"main": "/first/main",
-		"s1": "/first/js/myApp",
+		"main": "/second/main",
+		"s1": "/second/js/myApp",
 		
     },
     preload:[

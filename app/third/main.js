@@ -22,5 +22,4 @@ define(function(require, exports, module){
 	});
 
 	var myApp = new MyApp(s1.FirstScene);
-	console.log('aaa')
 });

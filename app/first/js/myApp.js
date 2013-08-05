@@ -1,59 +1,50 @@
-var MyLayer = cc.Layer.extend({
-    isMouseDown:false,
-    helloImg:null,
-    helloLabel:null,
-    circle:null,
-    sprite:null,
+define(function(require, exports, module){
+    var myLayer = cc.Layer.extend({
+        init: function(){
+            this._super();
+            var s = cc.Director.getInstance().getWinSize();
+            console.log(s);
+            var layer1 = cc.LayerColor.create(new cc.Color4B(100, 100, 100, 255), ccConfig.winWidth, ccConfig.winHeight);
+            console.log('ap:', layer1.getAnchorPoint())
+            layer1.setPosition( new cc.p(0, 0) )
 
-    init:function () {
+            var helloLabel = cc.LabelTTF.create("Oh shit!", "Arial", 30);
+            helloLabel.setPosition( new cc.p(s.width/2, s.height/2) )
+            helloLabel.setColor( new cc.Color3B(255,0,0) );  
+            var rotationAmount = 0;
+            var scale = 1;
+            var step = 0.05
+            helloLabel.schedule(function(){
+                this.setRotation( rotationAmount++ );
+                if( scale > 10 ){
+                    step = -0.05
+                }else if(scale < 1){
+                    step = 0.05
+                }
+                scale += step;
+                this.setScale( scale );
+                rotationAmount %=  360;
 
-        //////////////////////////////
-        // 1. super init first
-        this._super();
+            });
 
-        /////////////////////////////
-        // 2. add a menu item with "X" image, which is clicked to quit the program
-        //    you may modify it.
-        // ask director the window size
-        var size = cc.Director.getInstance().getWinSize();
 
-        // add a "close" icon to exit the progress. it's an autorelease object
-        var closeItem = cc.MenuItemImage.create(
-            s_CloseNormal,
-            s_CloseSelected,
-            function () {
-                cc.log("close");
-            },this);
-        closeItem.setAnchorPoint(cc.p(0.5, 0.5));
+            layer1.addChild(helloLabel);
+            this.addChild(layer1);
 
-        var menu = cc.Menu.create(closeItem);
-        menu.setPosition(cc.p(0, 0));
-        this.addChild(menu, 1);
-        closeItem.setPosition(cc.p(size.width - 20, 20));
+            return true;
+        }
 
-        /////////////////////////////
-        // 3. add your codes below...
-        // add a label shows "Hello World"
-        // create and initialize a label
-        this.helloLabel = cc.LabelTTF.create("Hello World", "Impact", 38);
-        // position the label on the center of the screen
-        this.helloLabel.setPosition(cc.p(size.width / 2, size.height - 40));
-        // add the label as a child to this layer
-        this.addChild(this.helloLabel, 5);
 
-        // add "Helloworld" splash screen"
-        this.sprite = cc.Sprite.create(s_HelloWorld);
-        this.sprite.setAnchorPoint(cc.p(0.5, 0.5));
-        this.sprite.setPosition(cc.p(size.width / 2, size.height / 2));
-        this.addChild(this.sprite, 0);
-    }
-});
+    });
 
-var MyScene = cc.Scene.extend({
-    onEnter:function () {
-        this._super();
-        var layer = new MyLayer();
-        this.addChild(layer);
-        layer.init();
-    }
+    var MyFirstAppScene = cc.Scene.extend({
+        onEnter: function(){
+            console.log('enter')
+            this._super();
+            var layer = new myLayer();
+            layer.init();
+            this.addChild(layer);
+        }
+    });
+    exports.FirstScene = MyFirstAppScene;
 });

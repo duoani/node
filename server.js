@@ -5,8 +5,6 @@ function start( route, handle ){
 	http.createServer(function(request, response) {
 		if(request.url === '/favicon.ico'){return false;}
 		var pathname = url.parse( request.url ).pathname;
-		console.log(pathname)
-
 		route(handle || {}, pathname, request, response);
 	}).listen(8888);
 }
