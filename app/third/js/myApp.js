@@ -1,5 +1,6 @@
 define(function(require, exports, module){
     var Jet = require("jet");
+    var cfg = require("gameConfig");
     var myLayer = cc.Layer.extend({
         _jet: null,
         init: function(){
@@ -27,10 +28,10 @@ define(function(require, exports, module){
             this._jet.handleTouchMove(pTouch[0].getLocation());
         },
         onKeyUp:function(e){
-
+            cfg.KEY[e] = 0;
         },
         onKeyDown:function(e){
-            this._jet.handleKey(e);
+            cfg.KEY[e] = 1;
         }
     });
 

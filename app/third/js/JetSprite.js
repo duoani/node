@@ -1,5 +1,6 @@
 define(function( require, exports, module ){
 	var cc = require("cocos2d");
+    var cfg = require("gameConfig");
 	var JetSprite = cc.Sprite.extend({
 		_currRotation: 0,
 		_x: 0,
@@ -12,21 +13,22 @@ define(function( require, exports, module ){
 			this._y = s.height / 2;
 		},
 		update: function(){
-			this.setPosition(this._x, this._y);
+			this.handleKey();
+            this.setPosition(this._x, this._y);
 			this.setRotation(this._currRotation);
 		},
-		handleKey:function(e){
-			console.log(e)
-			if(e === cc.KEY.left){
+		handleKey:function(){
+			if( cfg.KEY[cc.KEY.left] ){
 				this._x -= 5;
 
-			}else if(e === cc.KEY.right){
+			}else if( cfg.KEY[cc.KEY.right] ){
 				this._x += 5;
 
-			}else if( e === cc.KEY.up ){
+			}
+            if( cfg.KEY[cc.KEY.up] ){
 				this._y += 5;
 
-			}else if( e === cc.KEY.down ){
+			}else if( cfg.KEY[cc.KEY.down] ){
 				this._y -= 5;
 			}
 
