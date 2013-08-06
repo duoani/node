@@ -14,7 +14,8 @@ define(function( require, exports, module ){
 		return (num2 - num1)*Math.random() + num1;
 	}
 	exports.rand = rand;
-	
+
+
 	/**
 	 * 求区间内的随机整数
 	 * @param {Number} num1
